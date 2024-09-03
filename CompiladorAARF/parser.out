@@ -1,0 +1,2208 @@
+Created by PLY version 3.11 (http://www.dabeaz.com/ply)
+
+Grammar
+
+Rule 0     S' -> program
+Rule 1     program -> PROGRAMA ID pn1 P_COMA dec_Vars dec1_F MAIN Body END
+Rule 2     dec_Vars -> Vars
+Rule 3     dec_Vars -> epsilon
+Rule 4     dec1_F -> Funcs dec1_F
+Rule 5     dec1_F -> epsilon
+Rule 6     pn1 -> <empty>
+Rule 7     Vars -> VARIABLE mas_Vars
+Rule 8     mas_Vars -> id_Vars P_PUNTO Type pn2 P_COMA rep_Vars
+Rule 9     id_Vars -> ID pn3 mas_id
+Rule 10    mas_id -> COMA id_Vars
+Rule 11    mas_id -> epsilon
+Rule 12    rep_Vars -> mas_Vars
+Rule 13    rep_Vars -> epsilon
+Rule 14    pn2 -> <empty>
+Rule 15    pn3 -> <empty>
+Rule 16    Body -> K_IZQUIERDO dec_State K_DERECHO
+Rule 17    dec_State -> Statement dec_State
+Rule 18    dec_State -> epsilon
+Rule 19    Statement -> Assign
+Rule 20    Statement -> Condition
+Rule 21    Statement -> Cycle
+Rule 22    Statement -> F_Call
+Rule 23    Statement -> Print
+Rule 24    Print -> PRINT P_IZQUIERDO dec_Expresion P_DERECHO P_COMA
+Rule 25    dec_Expresion -> Expresion pn2p mas_Print
+Rule 26    dec_Expresion -> CTE_STRING pn1p mas_Print
+Rule 27    mas_Print -> COMA dec_Expresion
+Rule 28    mas_Print -> epsilon
+Rule 29    pn1p -> <empty>
+Rule 30    pn2p -> <empty>
+Rule 31    Cycle -> DO pn1c Body WHILE P_IZQUIERDO Expresion pn2c P_DERECHO P_COMA
+Rule 32    pn1c -> <empty>
+Rule 33    pn2c -> <empty>
+Rule 34    Condition -> IF P_IZQUIERDO Expresion pn1i P_DERECHO Body mas_if P_COMA pn2i
+Rule 35    mas_if -> ELSE pn3i Body
+Rule 36    mas_if -> epsilon
+Rule 37    pn1i -> <empty>
+Rule 38    pn2i -> <empty>
+Rule 39    pn3i -> <empty>
+Rule 40    Assign -> ID pn1a IGUAL pn2a Expresion pn3a P_COMA
+Rule 41    pn1a -> <empty>
+Rule 42    pn2a -> <empty>
+Rule 43    pn3a -> <empty>
+Rule 44    Expresion -> EXP mas_E
+Rule 45    mas_E -> operators pn8e EXP pn9e
+Rule 46    mas_E -> epsilon
+Rule 47    operators -> MAYOR
+Rule 48    operators -> MENOR
+Rule 49    operators -> DIFE
+Rule 50    EXP -> Termino pn4e mas_EXP
+Rule 51    mas_EXP -> SUMA pn3e EXP
+Rule 52    mas_EXP -> RESTA pn3e EXP
+Rule 53    mas_EXP -> epsilon
+Rule 54    pn3e -> <empty>
+Rule 55    pn4e -> <empty>
+Rule 56    pn8e -> <empty>
+Rule 57    pn9e -> <empty>
+Rule 58    Termino -> Factor pn5e mas_Term
+Rule 59    mas_Term -> MULT pn2e Termino
+Rule 60    mas_Term -> DIV pn2e Termino
+Rule 61    mas_Term -> epsilon
+Rule 62    pn2e -> <empty>
+Rule 63    pn5e -> <empty>
+Rule 64    Factor -> P_IZQUIERDO pn6e Expresion pn7e P_DERECHO
+Rule 65    Factor -> dec_Factor mas_Factor
+Rule 66    dec_Factor -> SUMA
+Rule 67    dec_Factor -> RESTA
+Rule 68    dec_Factor -> epsilon
+Rule 69    mas_Factor -> ID pn1e
+Rule 70    mas_Factor -> CTE pn1e2
+Rule 71    pn1e -> <empty>
+Rule 72    pn1e2 -> <empty>
+Rule 73    pn6e -> <empty>
+Rule 74    pn7e -> <empty>
+Rule 75    CTE -> CTE_FLOAT pnAux
+Rule 76    CTE -> CTE_INT pnAux2
+Rule 77    pnAux -> <empty>
+Rule 78    pnAux2 -> <empty>
+Rule 79    Funcs -> VOID ID pn4 P_IZQUIERDO mas_Func P_DERECHO B_IZQUIERDO dec_Vars Body pn6 B_DERECHO P_COMA
+Rule 80    mas_Func -> ID P_PUNTO Type pn5 mas2_Func
+Rule 81    mas_Func -> epsilon
+Rule 82    mas2_Func -> COMA mas_Func
+Rule 83    mas2_Func -> epsilon
+Rule 84    pn4 -> <empty>
+Rule 85    pn5 -> <empty>
+Rule 86    pn6 -> <empty>
+Rule 87    F_Call -> ID P_IZQUIERDO mas_F P_DERECHO P_COMA
+Rule 88    mas_F -> Expresion mas2_F
+Rule 89    mas_F -> epsilon
+Rule 90    mas2_F -> COMA mas_F
+Rule 91    mas2_F -> epsilon
+Rule 92    Type -> ENTERO
+Rule 93    Type -> FLOTANTE
+Rule 94    epsilon -> <empty>
+
+Terminals, with rules where they appear
+
+B_DERECHO            : 79
+B_IZQUIERDO          : 79
+COMA                 : 10 27 82 90
+CTE_FLOAT            : 75
+CTE_INT              : 76
+CTE_STRING           : 26
+DIFE                 : 49
+DIV                  : 60
+DO                   : 31
+ELSE                 : 35
+END                  : 1
+ENTERO               : 92
+FLOTANTE             : 93
+ID                   : 1 9 40 69 79 80 87
+IF                   : 34
+IGUAL                : 40
+K_DERECHO            : 16
+K_IZQUIERDO          : 16
+MAIN                 : 1
+MAYOR                : 47
+MENOR                : 48
+MULT                 : 59
+PRINT                : 24
+PROGRAMA             : 1
+P_COMA               : 1 8 24 31 34 40 79 87
+P_DERECHO            : 24 31 34 64 79 87
+P_IZQUIERDO          : 24 31 34 64 79 87
+P_PUNTO              : 8 80
+RESTA                : 52 67
+SUMA                 : 51 66
+VARIABLE             : 7
+VOID                 : 79
+WHILE                : 31
+error                : 
+
+Nonterminals, with rules where they appear
+
+Assign               : 19
+Body                 : 1 31 34 35 79
+CTE                  : 70
+Condition            : 20
+Cycle                : 21
+EXP                  : 44 45 51 52
+Expresion            : 25 31 34 40 64 88
+F_Call               : 22
+Factor               : 58
+Funcs                : 4
+Print                : 23
+Statement            : 17
+Termino              : 50 59 60
+Type                 : 8 80
+Vars                 : 2
+dec1_F               : 1 4
+dec_Expresion        : 24 27
+dec_Factor           : 65
+dec_State            : 16 17
+dec_Vars             : 1 79
+epsilon              : 3 5 11 13 18 28 36 46 53 61 68 81 83 89 91
+id_Vars              : 8 10
+mas2_F               : 88
+mas2_Func            : 80
+mas_E                : 44
+mas_EXP              : 50
+mas_F                : 87 90
+mas_Factor           : 65
+mas_Func             : 79 82
+mas_Print            : 25 26
+mas_Term             : 58
+mas_Vars             : 7 12
+mas_id               : 9
+mas_if               : 34
+operators            : 45
+pn1                  : 1
+pn1a                 : 40
+pn1c                 : 31
+pn1e                 : 69
+pn1e2                : 70
+pn1i                 : 34
+pn1p                 : 26
+pn2                  : 8
+pn2a                 : 40
+pn2c                 : 31
+pn2e                 : 59 60
+pn2i                 : 34
+pn2p                 : 25
+pn3                  : 9
+pn3a                 : 40
+pn3e                 : 51 52
+pn3i                 : 35
+pn4                  : 79
+pn4e                 : 50
+pn5                  : 80
+pn5e                 : 58
+pn6                  : 79
+pn6e                 : 64
+pn7e                 : 64
+pn8e                 : 45
+pn9e                 : 45
+pnAux                : 75
+pnAux2               : 76
+program              : 0
+rep_Vars             : 8
+
+Parsing method: LALR
+
+state 0
+
+    (0) S' -> . program
+    (1) program -> . PROGRAMA ID pn1 P_COMA dec_Vars dec1_F MAIN Body END
+
+    PROGRAMA        shift and go to state 2
+
+    program                        shift and go to state 1
+
+state 1
+
+    (0) S' -> program .
+
+
+
+state 2
+
+    (1) program -> PROGRAMA . ID pn1 P_COMA dec_Vars dec1_F MAIN Body END
+
+    ID              shift and go to state 3
+
+
+state 3
+
+    (1) program -> PROGRAMA ID . pn1 P_COMA dec_Vars dec1_F MAIN Body END
+    (6) pn1 -> .
+
+    P_COMA          reduce using rule 6 (pn1 -> .)
+
+    pn1                            shift and go to state 4
+
+state 4
+
+    (1) program -> PROGRAMA ID pn1 . P_COMA dec_Vars dec1_F MAIN Body END
+
+    P_COMA          shift and go to state 5
+
+
+state 5
+
+    (1) program -> PROGRAMA ID pn1 P_COMA . dec_Vars dec1_F MAIN Body END
+    (2) dec_Vars -> . Vars
+    (3) dec_Vars -> . epsilon
+    (7) Vars -> . VARIABLE mas_Vars
+    (94) epsilon -> .
+
+    VARIABLE        shift and go to state 9
+    VOID            reduce using rule 94 (epsilon -> .)
+    MAIN            reduce using rule 94 (epsilon -> .)
+
+    dec_Vars                       shift and go to state 6
+    Vars                           shift and go to state 7
+    epsilon                        shift and go to state 8
+
+state 6
+
+    (1) program -> PROGRAMA ID pn1 P_COMA dec_Vars . dec1_F MAIN Body END
+    (4) dec1_F -> . Funcs dec1_F
+    (5) dec1_F -> . epsilon
+    (79) Funcs -> . VOID ID pn4 P_IZQUIERDO mas_Func P_DERECHO B_IZQUIERDO dec_Vars Body pn6 B_DERECHO P_COMA
+    (94) epsilon -> .
+
+    VOID            shift and go to state 13
+    MAIN            reduce using rule 94 (epsilon -> .)
+
+    dec1_F                         shift and go to state 10
+    Funcs                          shift and go to state 11
+    epsilon                        shift and go to state 12
+
+state 7
+
+    (2) dec_Vars -> Vars .
+
+    VOID            reduce using rule 2 (dec_Vars -> Vars .)
+    MAIN            reduce using rule 2 (dec_Vars -> Vars .)
+    K_IZQUIERDO     reduce using rule 2 (dec_Vars -> Vars .)
+
+
+state 8
+
+    (3) dec_Vars -> epsilon .
+
+    VOID            reduce using rule 3 (dec_Vars -> epsilon .)
+    MAIN            reduce using rule 3 (dec_Vars -> epsilon .)
+    K_IZQUIERDO     reduce using rule 3 (dec_Vars -> epsilon .)
+
+
+state 9
+
+    (7) Vars -> VARIABLE . mas_Vars
+    (8) mas_Vars -> . id_Vars P_PUNTO Type pn2 P_COMA rep_Vars
+    (9) id_Vars -> . ID pn3 mas_id
+
+    ID              shift and go to state 16
+
+    mas_Vars                       shift and go to state 14
+    id_Vars                        shift and go to state 15
+
+state 10
+
+    (1) program -> PROGRAMA ID pn1 P_COMA dec_Vars dec1_F . MAIN Body END
+
+    MAIN            shift and go to state 17
+
+
+state 11
+
+    (4) dec1_F -> Funcs . dec1_F
+    (4) dec1_F -> . Funcs dec1_F
+    (5) dec1_F -> . epsilon
+    (79) Funcs -> . VOID ID pn4 P_IZQUIERDO mas_Func P_DERECHO B_IZQUIERDO dec_Vars Body pn6 B_DERECHO P_COMA
+    (94) epsilon -> .
+
+    VOID            shift and go to state 13
+    MAIN            reduce using rule 94 (epsilon -> .)
+
+    Funcs                          shift and go to state 11
+    dec1_F                         shift and go to state 18
+    epsilon                        shift and go to state 12
+
+state 12
+
+    (5) dec1_F -> epsilon .
+
+    MAIN            reduce using rule 5 (dec1_F -> epsilon .)
+
+
+state 13
+
+    (79) Funcs -> VOID . ID pn4 P_IZQUIERDO mas_Func P_DERECHO B_IZQUIERDO dec_Vars Body pn6 B_DERECHO P_COMA
+
+    ID              shift and go to state 19
+
+
+state 14
+
+    (7) Vars -> VARIABLE mas_Vars .
+
+    VOID            reduce using rule 7 (Vars -> VARIABLE mas_Vars .)
+    MAIN            reduce using rule 7 (Vars -> VARIABLE mas_Vars .)
+    K_IZQUIERDO     reduce using rule 7 (Vars -> VARIABLE mas_Vars .)
+
+
+state 15
+
+    (8) mas_Vars -> id_Vars . P_PUNTO Type pn2 P_COMA rep_Vars
+
+    P_PUNTO         shift and go to state 20
+
+
+state 16
+
+    (9) id_Vars -> ID . pn3 mas_id
+    (15) pn3 -> .
+
+    COMA            reduce using rule 15 (pn3 -> .)
+    P_PUNTO         reduce using rule 15 (pn3 -> .)
+
+    pn3                            shift and go to state 21
+
+state 17
+
+    (1) program -> PROGRAMA ID pn1 P_COMA dec_Vars dec1_F MAIN . Body END
+    (16) Body -> . K_IZQUIERDO dec_State K_DERECHO
+
+    K_IZQUIERDO     shift and go to state 23
+
+    Body                           shift and go to state 22
+
+state 18
+
+    (4) dec1_F -> Funcs dec1_F .
+
+    MAIN            reduce using rule 4 (dec1_F -> Funcs dec1_F .)
+
+
+state 19
+
+    (79) Funcs -> VOID ID . pn4 P_IZQUIERDO mas_Func P_DERECHO B_IZQUIERDO dec_Vars Body pn6 B_DERECHO P_COMA
+    (84) pn4 -> .
+
+    P_IZQUIERDO     reduce using rule 84 (pn4 -> .)
+
+    pn4                            shift and go to state 24
+
+state 20
+
+    (8) mas_Vars -> id_Vars P_PUNTO . Type pn2 P_COMA rep_Vars
+    (92) Type -> . ENTERO
+    (93) Type -> . FLOTANTE
+
+    ENTERO          shift and go to state 26
+    FLOTANTE        shift and go to state 27
+
+    Type                           shift and go to state 25
+
+state 21
+
+    (9) id_Vars -> ID pn3 . mas_id
+    (10) mas_id -> . COMA id_Vars
+    (11) mas_id -> . epsilon
+    (94) epsilon -> .
+
+    COMA            shift and go to state 29
+    P_PUNTO         reduce using rule 94 (epsilon -> .)
+
+    mas_id                         shift and go to state 28
+    epsilon                        shift and go to state 30
+
+state 22
+
+    (1) program -> PROGRAMA ID pn1 P_COMA dec_Vars dec1_F MAIN Body . END
+
+    END             shift and go to state 31
+
+
+state 23
+
+    (16) Body -> K_IZQUIERDO . dec_State K_DERECHO
+    (17) dec_State -> . Statement dec_State
+    (18) dec_State -> . epsilon
+    (19) Statement -> . Assign
+    (20) Statement -> . Condition
+    (21) Statement -> . Cycle
+    (22) Statement -> . F_Call
+    (23) Statement -> . Print
+    (94) epsilon -> .
+    (40) Assign -> . ID pn1a IGUAL pn2a Expresion pn3a P_COMA
+    (34) Condition -> . IF P_IZQUIERDO Expresion pn1i P_DERECHO Body mas_if P_COMA pn2i
+    (31) Cycle -> . DO pn1c Body WHILE P_IZQUIERDO Expresion pn2c P_DERECHO P_COMA
+    (87) F_Call -> . ID P_IZQUIERDO mas_F P_DERECHO P_COMA
+    (24) Print -> . PRINT P_IZQUIERDO dec_Expresion P_DERECHO P_COMA
+
+    K_DERECHO       reduce using rule 94 (epsilon -> .)
+    ID              shift and go to state 40
+    IF              shift and go to state 41
+    DO              shift and go to state 42
+    PRINT           shift and go to state 43
+
+    dec_State                      shift and go to state 32
+    Statement                      shift and go to state 33
+    epsilon                        shift and go to state 34
+    Assign                         shift and go to state 35
+    Condition                      shift and go to state 36
+    Cycle                          shift and go to state 37
+    F_Call                         shift and go to state 38
+    Print                          shift and go to state 39
+
+state 24
+
+    (79) Funcs -> VOID ID pn4 . P_IZQUIERDO mas_Func P_DERECHO B_IZQUIERDO dec_Vars Body pn6 B_DERECHO P_COMA
+
+    P_IZQUIERDO     shift and go to state 44
+
+
+state 25
+
+    (8) mas_Vars -> id_Vars P_PUNTO Type . pn2 P_COMA rep_Vars
+    (14) pn2 -> .
+
+    P_COMA          reduce using rule 14 (pn2 -> .)
+
+    pn2                            shift and go to state 45
+
+state 26
+
+    (92) Type -> ENTERO .
+
+    P_COMA          reduce using rule 92 (Type -> ENTERO .)
+    COMA            reduce using rule 92 (Type -> ENTERO .)
+    P_DERECHO       reduce using rule 92 (Type -> ENTERO .)
+
+
+state 27
+
+    (93) Type -> FLOTANTE .
+
+    P_COMA          reduce using rule 93 (Type -> FLOTANTE .)
+    COMA            reduce using rule 93 (Type -> FLOTANTE .)
+    P_DERECHO       reduce using rule 93 (Type -> FLOTANTE .)
+
+
+state 28
+
+    (9) id_Vars -> ID pn3 mas_id .
+
+    P_PUNTO         reduce using rule 9 (id_Vars -> ID pn3 mas_id .)
+
+
+state 29
+
+    (10) mas_id -> COMA . id_Vars
+    (9) id_Vars -> . ID pn3 mas_id
+
+    ID              shift and go to state 16
+
+    id_Vars                        shift and go to state 46
+
+state 30
+
+    (11) mas_id -> epsilon .
+
+    P_PUNTO         reduce using rule 11 (mas_id -> epsilon .)
+
+
+state 31
+
+    (1) program -> PROGRAMA ID pn1 P_COMA dec_Vars dec1_F MAIN Body END .
+
+    $end            reduce using rule 1 (program -> PROGRAMA ID pn1 P_COMA dec_Vars dec1_F MAIN Body END .)
+
+
+state 32
+
+    (16) Body -> K_IZQUIERDO dec_State . K_DERECHO
+
+    K_DERECHO       shift and go to state 47
+
+
+state 33
+
+    (17) dec_State -> Statement . dec_State
+    (17) dec_State -> . Statement dec_State
+    (18) dec_State -> . epsilon
+    (19) Statement -> . Assign
+    (20) Statement -> . Condition
+    (21) Statement -> . Cycle
+    (22) Statement -> . F_Call
+    (23) Statement -> . Print
+    (94) epsilon -> .
+    (40) Assign -> . ID pn1a IGUAL pn2a Expresion pn3a P_COMA
+    (34) Condition -> . IF P_IZQUIERDO Expresion pn1i P_DERECHO Body mas_if P_COMA pn2i
+    (31) Cycle -> . DO pn1c Body WHILE P_IZQUIERDO Expresion pn2c P_DERECHO P_COMA
+    (87) F_Call -> . ID P_IZQUIERDO mas_F P_DERECHO P_COMA
+    (24) Print -> . PRINT P_IZQUIERDO dec_Expresion P_DERECHO P_COMA
+
+    K_DERECHO       reduce using rule 94 (epsilon -> .)
+    ID              shift and go to state 40
+    IF              shift and go to state 41
+    DO              shift and go to state 42
+    PRINT           shift and go to state 43
+
+    Statement                      shift and go to state 33
+    dec_State                      shift and go to state 48
+    epsilon                        shift and go to state 34
+    Assign                         shift and go to state 35
+    Condition                      shift and go to state 36
+    Cycle                          shift and go to state 37
+    F_Call                         shift and go to state 38
+    Print                          shift and go to state 39
+
+state 34
+
+    (18) dec_State -> epsilon .
+
+    K_DERECHO       reduce using rule 18 (dec_State -> epsilon .)
+
+
+state 35
+
+    (19) Statement -> Assign .
+
+    ID              reduce using rule 19 (Statement -> Assign .)
+    IF              reduce using rule 19 (Statement -> Assign .)
+    DO              reduce using rule 19 (Statement -> Assign .)
+    PRINT           reduce using rule 19 (Statement -> Assign .)
+    K_DERECHO       reduce using rule 19 (Statement -> Assign .)
+
+
+state 36
+
+    (20) Statement -> Condition .
+
+    ID              reduce using rule 20 (Statement -> Condition .)
+    IF              reduce using rule 20 (Statement -> Condition .)
+    DO              reduce using rule 20 (Statement -> Condition .)
+    PRINT           reduce using rule 20 (Statement -> Condition .)
+    K_DERECHO       reduce using rule 20 (Statement -> Condition .)
+
+
+state 37
+
+    (21) Statement -> Cycle .
+
+    ID              reduce using rule 21 (Statement -> Cycle .)
+    IF              reduce using rule 21 (Statement -> Cycle .)
+    DO              reduce using rule 21 (Statement -> Cycle .)
+    PRINT           reduce using rule 21 (Statement -> Cycle .)
+    K_DERECHO       reduce using rule 21 (Statement -> Cycle .)
+
+
+state 38
+
+    (22) Statement -> F_Call .
+
+    ID              reduce using rule 22 (Statement -> F_Call .)
+    IF              reduce using rule 22 (Statement -> F_Call .)
+    DO              reduce using rule 22 (Statement -> F_Call .)
+    PRINT           reduce using rule 22 (Statement -> F_Call .)
+    K_DERECHO       reduce using rule 22 (Statement -> F_Call .)
+
+
+state 39
+
+    (23) Statement -> Print .
+
+    ID              reduce using rule 23 (Statement -> Print .)
+    IF              reduce using rule 23 (Statement -> Print .)
+    DO              reduce using rule 23 (Statement -> Print .)
+    PRINT           reduce using rule 23 (Statement -> Print .)
+    K_DERECHO       reduce using rule 23 (Statement -> Print .)
+
+
+state 40
+
+    (40) Assign -> ID . pn1a IGUAL pn2a Expresion pn3a P_COMA
+    (87) F_Call -> ID . P_IZQUIERDO mas_F P_DERECHO P_COMA
+    (41) pn1a -> .
+
+    P_IZQUIERDO     shift and go to state 50
+    IGUAL           reduce using rule 41 (pn1a -> .)
+
+    pn1a                           shift and go to state 49
+
+state 41
+
+    (34) Condition -> IF . P_IZQUIERDO Expresion pn1i P_DERECHO Body mas_if P_COMA pn2i
+
+    P_IZQUIERDO     shift and go to state 51
+
+
+state 42
+
+    (31) Cycle -> DO . pn1c Body WHILE P_IZQUIERDO Expresion pn2c P_DERECHO P_COMA
+    (32) pn1c -> .
+
+    K_IZQUIERDO     reduce using rule 32 (pn1c -> .)
+
+    pn1c                           shift and go to state 52
+
+state 43
+
+    (24) Print -> PRINT . P_IZQUIERDO dec_Expresion P_DERECHO P_COMA
+
+    P_IZQUIERDO     shift and go to state 53
+
+
+state 44
+
+    (79) Funcs -> VOID ID pn4 P_IZQUIERDO . mas_Func P_DERECHO B_IZQUIERDO dec_Vars Body pn6 B_DERECHO P_COMA
+    (80) mas_Func -> . ID P_PUNTO Type pn5 mas2_Func
+    (81) mas_Func -> . epsilon
+    (94) epsilon -> .
+
+    ID              shift and go to state 54
+    P_DERECHO       reduce using rule 94 (epsilon -> .)
+
+    mas_Func                       shift and go to state 55
+    epsilon                        shift and go to state 56
+
+state 45
+
+    (8) mas_Vars -> id_Vars P_PUNTO Type pn2 . P_COMA rep_Vars
+
+    P_COMA          shift and go to state 57
+
+
+state 46
+
+    (10) mas_id -> COMA id_Vars .
+
+    P_PUNTO         reduce using rule 10 (mas_id -> COMA id_Vars .)
+
+
+state 47
+
+    (16) Body -> K_IZQUIERDO dec_State K_DERECHO .
+
+    END             reduce using rule 16 (Body -> K_IZQUIERDO dec_State K_DERECHO .)
+    WHILE           reduce using rule 16 (Body -> K_IZQUIERDO dec_State K_DERECHO .)
+    ELSE            reduce using rule 16 (Body -> K_IZQUIERDO dec_State K_DERECHO .)
+    P_COMA          reduce using rule 16 (Body -> K_IZQUIERDO dec_State K_DERECHO .)
+    B_DERECHO       reduce using rule 16 (Body -> K_IZQUIERDO dec_State K_DERECHO .)
+
+
+state 48
+
+    (17) dec_State -> Statement dec_State .
+
+    K_DERECHO       reduce using rule 17 (dec_State -> Statement dec_State .)
+
+
+state 49
+
+    (40) Assign -> ID pn1a . IGUAL pn2a Expresion pn3a P_COMA
+
+    IGUAL           shift and go to state 58
+
+
+state 50
+
+    (87) F_Call -> ID P_IZQUIERDO . mas_F P_DERECHO P_COMA
+    (88) mas_F -> . Expresion mas2_F
+    (89) mas_F -> . epsilon
+    (44) Expresion -> . EXP mas_E
+    (94) epsilon -> .
+    (50) EXP -> . Termino pn4e mas_EXP
+    (58) Termino -> . Factor pn5e mas_Term
+    (64) Factor -> . P_IZQUIERDO pn6e Expresion pn7e P_DERECHO
+    (65) Factor -> . dec_Factor mas_Factor
+    (66) dec_Factor -> . SUMA
+    (67) dec_Factor -> . RESTA
+    (68) dec_Factor -> . epsilon
+
+    P_DERECHO       reduce using rule 94 (epsilon -> .)
+    ID              reduce using rule 94 (epsilon -> .)
+    CTE_FLOAT       reduce using rule 94 (epsilon -> .)
+    CTE_INT         reduce using rule 94 (epsilon -> .)
+    P_IZQUIERDO     shift and go to state 59
+    SUMA            shift and go to state 67
+    RESTA           shift and go to state 68
+
+    mas_F                          shift and go to state 60
+    Expresion                      shift and go to state 61
+    epsilon                        shift and go to state 62
+    EXP                            shift and go to state 63
+    Termino                        shift and go to state 64
+    Factor                         shift and go to state 65
+    dec_Factor                     shift and go to state 66
+
+state 51
+
+    (34) Condition -> IF P_IZQUIERDO . Expresion pn1i P_DERECHO Body mas_if P_COMA pn2i
+    (44) Expresion -> . EXP mas_E
+    (50) EXP -> . Termino pn4e mas_EXP
+    (58) Termino -> . Factor pn5e mas_Term
+    (64) Factor -> . P_IZQUIERDO pn6e Expresion pn7e P_DERECHO
+    (65) Factor -> . dec_Factor mas_Factor
+    (66) dec_Factor -> . SUMA
+    (67) dec_Factor -> . RESTA
+    (68) dec_Factor -> . epsilon
+    (94) epsilon -> .
+
+    P_IZQUIERDO     shift and go to state 59
+    SUMA            shift and go to state 67
+    RESTA           shift and go to state 68
+    ID              reduce using rule 94 (epsilon -> .)
+    CTE_FLOAT       reduce using rule 94 (epsilon -> .)
+    CTE_INT         reduce using rule 94 (epsilon -> .)
+
+    Expresion                      shift and go to state 69
+    EXP                            shift and go to state 63
+    Termino                        shift and go to state 64
+    Factor                         shift and go to state 65
+    dec_Factor                     shift and go to state 66
+    epsilon                        shift and go to state 70
+
+state 52
+
+    (31) Cycle -> DO pn1c . Body WHILE P_IZQUIERDO Expresion pn2c P_DERECHO P_COMA
+    (16) Body -> . K_IZQUIERDO dec_State K_DERECHO
+
+    K_IZQUIERDO     shift and go to state 23
+
+    Body                           shift and go to state 71
+
+state 53
+
+    (24) Print -> PRINT P_IZQUIERDO . dec_Expresion P_DERECHO P_COMA
+    (25) dec_Expresion -> . Expresion pn2p mas_Print
+    (26) dec_Expresion -> . CTE_STRING pn1p mas_Print
+    (44) Expresion -> . EXP mas_E
+    (50) EXP -> . Termino pn4e mas_EXP
+    (58) Termino -> . Factor pn5e mas_Term
+    (64) Factor -> . P_IZQUIERDO pn6e Expresion pn7e P_DERECHO
+    (65) Factor -> . dec_Factor mas_Factor
+    (66) dec_Factor -> . SUMA
+    (67) dec_Factor -> . RESTA
+    (68) dec_Factor -> . epsilon
+    (94) epsilon -> .
+
+    CTE_STRING      shift and go to state 74
+    P_IZQUIERDO     shift and go to state 59
+    SUMA            shift and go to state 67
+    RESTA           shift and go to state 68
+    ID              reduce using rule 94 (epsilon -> .)
+    CTE_FLOAT       reduce using rule 94 (epsilon -> .)
+    CTE_INT         reduce using rule 94 (epsilon -> .)
+
+    dec_Expresion                  shift and go to state 72
+    Expresion                      shift and go to state 73
+    EXP                            shift and go to state 63
+    Termino                        shift and go to state 64
+    Factor                         shift and go to state 65
+    dec_Factor                     shift and go to state 66
+    epsilon                        shift and go to state 70
+
+state 54
+
+    (80) mas_Func -> ID . P_PUNTO Type pn5 mas2_Func
+
+    P_PUNTO         shift and go to state 75
+
+
+state 55
+
+    (79) Funcs -> VOID ID pn4 P_IZQUIERDO mas_Func . P_DERECHO B_IZQUIERDO dec_Vars Body pn6 B_DERECHO P_COMA
+
+    P_DERECHO       shift and go to state 76
+
+
+state 56
+
+    (81) mas_Func -> epsilon .
+
+    P_DERECHO       reduce using rule 81 (mas_Func -> epsilon .)
+
+
+state 57
+
+    (8) mas_Vars -> id_Vars P_PUNTO Type pn2 P_COMA . rep_Vars
+    (12) rep_Vars -> . mas_Vars
+    (13) rep_Vars -> . epsilon
+    (8) mas_Vars -> . id_Vars P_PUNTO Type pn2 P_COMA rep_Vars
+    (94) epsilon -> .
+    (9) id_Vars -> . ID pn3 mas_id
+
+    VOID            reduce using rule 94 (epsilon -> .)
+    MAIN            reduce using rule 94 (epsilon -> .)
+    K_IZQUIERDO     reduce using rule 94 (epsilon -> .)
+    ID              shift and go to state 16
+
+    id_Vars                        shift and go to state 15
+    rep_Vars                       shift and go to state 77
+    mas_Vars                       shift and go to state 78
+    epsilon                        shift and go to state 79
+
+state 58
+
+    (40) Assign -> ID pn1a IGUAL . pn2a Expresion pn3a P_COMA
+    (42) pn2a -> .
+
+    P_IZQUIERDO     reduce using rule 42 (pn2a -> .)
+    SUMA            reduce using rule 42 (pn2a -> .)
+    RESTA           reduce using rule 42 (pn2a -> .)
+    ID              reduce using rule 42 (pn2a -> .)
+    CTE_FLOAT       reduce using rule 42 (pn2a -> .)
+    CTE_INT         reduce using rule 42 (pn2a -> .)
+
+    pn2a                           shift and go to state 80
+
+state 59
+
+    (64) Factor -> P_IZQUIERDO . pn6e Expresion pn7e P_DERECHO
+    (73) pn6e -> .
+
+    P_IZQUIERDO     reduce using rule 73 (pn6e -> .)
+    SUMA            reduce using rule 73 (pn6e -> .)
+    RESTA           reduce using rule 73 (pn6e -> .)
+    ID              reduce using rule 73 (pn6e -> .)
+    CTE_FLOAT       reduce using rule 73 (pn6e -> .)
+    CTE_INT         reduce using rule 73 (pn6e -> .)
+
+    pn6e                           shift and go to state 81
+
+state 60
+
+    (87) F_Call -> ID P_IZQUIERDO mas_F . P_DERECHO P_COMA
+
+    P_DERECHO       shift and go to state 82
+
+
+state 61
+
+    (88) mas_F -> Expresion . mas2_F
+    (90) mas2_F -> . COMA mas_F
+    (91) mas2_F -> . epsilon
+    (94) epsilon -> .
+
+    COMA            shift and go to state 84
+    P_DERECHO       reduce using rule 94 (epsilon -> .)
+
+    mas2_F                         shift and go to state 83
+    epsilon                        shift and go to state 85
+
+state 62
+
+    (89) mas_F -> epsilon .
+    (68) dec_Factor -> epsilon .
+
+    P_DERECHO       reduce using rule 89 (mas_F -> epsilon .)
+    ID              reduce using rule 68 (dec_Factor -> epsilon .)
+    CTE_FLOAT       reduce using rule 68 (dec_Factor -> epsilon .)
+    CTE_INT         reduce using rule 68 (dec_Factor -> epsilon .)
+
+
+state 63
+
+    (44) Expresion -> EXP . mas_E
+    (45) mas_E -> . operators pn8e EXP pn9e
+    (46) mas_E -> . epsilon
+    (47) operators -> . MAYOR
+    (48) operators -> . MENOR
+    (49) operators -> . DIFE
+    (94) epsilon -> .
+
+    MAYOR           shift and go to state 89
+    MENOR           shift and go to state 90
+    DIFE            shift and go to state 91
+    COMA            reduce using rule 94 (epsilon -> .)
+    P_DERECHO       reduce using rule 94 (epsilon -> .)
+    P_COMA          reduce using rule 94 (epsilon -> .)
+
+    mas_E                          shift and go to state 86
+    operators                      shift and go to state 87
+    epsilon                        shift and go to state 88
+
+state 64
+
+    (50) EXP -> Termino . pn4e mas_EXP
+    (55) pn4e -> .
+
+    SUMA            reduce using rule 55 (pn4e -> .)
+    RESTA           reduce using rule 55 (pn4e -> .)
+    MAYOR           reduce using rule 55 (pn4e -> .)
+    MENOR           reduce using rule 55 (pn4e -> .)
+    DIFE            reduce using rule 55 (pn4e -> .)
+    COMA            reduce using rule 55 (pn4e -> .)
+    P_DERECHO       reduce using rule 55 (pn4e -> .)
+    P_COMA          reduce using rule 55 (pn4e -> .)
+
+    pn4e                           shift and go to state 92
+
+state 65
+
+    (58) Termino -> Factor . pn5e mas_Term
+    (63) pn5e -> .
+
+    MULT            reduce using rule 63 (pn5e -> .)
+    DIV             reduce using rule 63 (pn5e -> .)
+    SUMA            reduce using rule 63 (pn5e -> .)
+    RESTA           reduce using rule 63 (pn5e -> .)
+    MAYOR           reduce using rule 63 (pn5e -> .)
+    MENOR           reduce using rule 63 (pn5e -> .)
+    DIFE            reduce using rule 63 (pn5e -> .)
+    COMA            reduce using rule 63 (pn5e -> .)
+    P_DERECHO       reduce using rule 63 (pn5e -> .)
+    P_COMA          reduce using rule 63 (pn5e -> .)
+
+    pn5e                           shift and go to state 93
+
+state 66
+
+    (65) Factor -> dec_Factor . mas_Factor
+    (69) mas_Factor -> . ID pn1e
+    (70) mas_Factor -> . CTE pn1e2
+    (75) CTE -> . CTE_FLOAT pnAux
+    (76) CTE -> . CTE_INT pnAux2
+
+    ID              shift and go to state 95
+    CTE_FLOAT       shift and go to state 97
+    CTE_INT         shift and go to state 98
+
+    mas_Factor                     shift and go to state 94
+    CTE                            shift and go to state 96
+
+state 67
+
+    (66) dec_Factor -> SUMA .
+
+    ID              reduce using rule 66 (dec_Factor -> SUMA .)
+    CTE_FLOAT       reduce using rule 66 (dec_Factor -> SUMA .)
+    CTE_INT         reduce using rule 66 (dec_Factor -> SUMA .)
+
+
+state 68
+
+    (67) dec_Factor -> RESTA .
+
+    ID              reduce using rule 67 (dec_Factor -> RESTA .)
+    CTE_FLOAT       reduce using rule 67 (dec_Factor -> RESTA .)
+    CTE_INT         reduce using rule 67 (dec_Factor -> RESTA .)
+
+
+state 69
+
+    (34) Condition -> IF P_IZQUIERDO Expresion . pn1i P_DERECHO Body mas_if P_COMA pn2i
+    (37) pn1i -> .
+
+    P_DERECHO       reduce using rule 37 (pn1i -> .)
+
+    pn1i                           shift and go to state 99
+
+state 70
+
+    (68) dec_Factor -> epsilon .
+
+    ID              reduce using rule 68 (dec_Factor -> epsilon .)
+    CTE_FLOAT       reduce using rule 68 (dec_Factor -> epsilon .)
+    CTE_INT         reduce using rule 68 (dec_Factor -> epsilon .)
+
+
+state 71
+
+    (31) Cycle -> DO pn1c Body . WHILE P_IZQUIERDO Expresion pn2c P_DERECHO P_COMA
+
+    WHILE           shift and go to state 100
+
+
+state 72
+
+    (24) Print -> PRINT P_IZQUIERDO dec_Expresion . P_DERECHO P_COMA
+
+    P_DERECHO       shift and go to state 101
+
+
+state 73
+
+    (25) dec_Expresion -> Expresion . pn2p mas_Print
+    (30) pn2p -> .
+
+    COMA            reduce using rule 30 (pn2p -> .)
+    P_DERECHO       reduce using rule 30 (pn2p -> .)
+
+    pn2p                           shift and go to state 102
+
+state 74
+
+    (26) dec_Expresion -> CTE_STRING . pn1p mas_Print
+    (29) pn1p -> .
+
+    COMA            reduce using rule 29 (pn1p -> .)
+    P_DERECHO       reduce using rule 29 (pn1p -> .)
+
+    pn1p                           shift and go to state 103
+
+state 75
+
+    (80) mas_Func -> ID P_PUNTO . Type pn5 mas2_Func
+    (92) Type -> . ENTERO
+    (93) Type -> . FLOTANTE
+
+    ENTERO          shift and go to state 26
+    FLOTANTE        shift and go to state 27
+
+    Type                           shift and go to state 104
+
+state 76
+
+    (79) Funcs -> VOID ID pn4 P_IZQUIERDO mas_Func P_DERECHO . B_IZQUIERDO dec_Vars Body pn6 B_DERECHO P_COMA
+
+    B_IZQUIERDO     shift and go to state 105
+
+
+state 77
+
+    (8) mas_Vars -> id_Vars P_PUNTO Type pn2 P_COMA rep_Vars .
+
+    VOID            reduce using rule 8 (mas_Vars -> id_Vars P_PUNTO Type pn2 P_COMA rep_Vars .)
+    MAIN            reduce using rule 8 (mas_Vars -> id_Vars P_PUNTO Type pn2 P_COMA rep_Vars .)
+    K_IZQUIERDO     reduce using rule 8 (mas_Vars -> id_Vars P_PUNTO Type pn2 P_COMA rep_Vars .)
+
+
+state 78
+
+    (12) rep_Vars -> mas_Vars .
+
+    VOID            reduce using rule 12 (rep_Vars -> mas_Vars .)
+    MAIN            reduce using rule 12 (rep_Vars -> mas_Vars .)
+    K_IZQUIERDO     reduce using rule 12 (rep_Vars -> mas_Vars .)
+
+
+state 79
+
+    (13) rep_Vars -> epsilon .
+
+    VOID            reduce using rule 13 (rep_Vars -> epsilon .)
+    MAIN            reduce using rule 13 (rep_Vars -> epsilon .)
+    K_IZQUIERDO     reduce using rule 13 (rep_Vars -> epsilon .)
+
+
+state 80
+
+    (40) Assign -> ID pn1a IGUAL pn2a . Expresion pn3a P_COMA
+    (44) Expresion -> . EXP mas_E
+    (50) EXP -> . Termino pn4e mas_EXP
+    (58) Termino -> . Factor pn5e mas_Term
+    (64) Factor -> . P_IZQUIERDO pn6e Expresion pn7e P_DERECHO
+    (65) Factor -> . dec_Factor mas_Factor
+    (66) dec_Factor -> . SUMA
+    (67) dec_Factor -> . RESTA
+    (68) dec_Factor -> . epsilon
+    (94) epsilon -> .
+
+    P_IZQUIERDO     shift and go to state 59
+    SUMA            shift and go to state 67
+    RESTA           shift and go to state 68
+    ID              reduce using rule 94 (epsilon -> .)
+    CTE_FLOAT       reduce using rule 94 (epsilon -> .)
+    CTE_INT         reduce using rule 94 (epsilon -> .)
+
+    Expresion                      shift and go to state 106
+    EXP                            shift and go to state 63
+    Termino                        shift and go to state 64
+    Factor                         shift and go to state 65
+    dec_Factor                     shift and go to state 66
+    epsilon                        shift and go to state 70
+
+state 81
+
+    (64) Factor -> P_IZQUIERDO pn6e . Expresion pn7e P_DERECHO
+    (44) Expresion -> . EXP mas_E
+    (50) EXP -> . Termino pn4e mas_EXP
+    (58) Termino -> . Factor pn5e mas_Term
+    (64) Factor -> . P_IZQUIERDO pn6e Expresion pn7e P_DERECHO
+    (65) Factor -> . dec_Factor mas_Factor
+    (66) dec_Factor -> . SUMA
+    (67) dec_Factor -> . RESTA
+    (68) dec_Factor -> . epsilon
+    (94) epsilon -> .
+
+    P_IZQUIERDO     shift and go to state 59
+    SUMA            shift and go to state 67
+    RESTA           shift and go to state 68
+    ID              reduce using rule 94 (epsilon -> .)
+    CTE_FLOAT       reduce using rule 94 (epsilon -> .)
+    CTE_INT         reduce using rule 94 (epsilon -> .)
+
+    Expresion                      shift and go to state 107
+    EXP                            shift and go to state 63
+    Termino                        shift and go to state 64
+    Factor                         shift and go to state 65
+    dec_Factor                     shift and go to state 66
+    epsilon                        shift and go to state 70
+
+state 82
+
+    (87) F_Call -> ID P_IZQUIERDO mas_F P_DERECHO . P_COMA
+
+    P_COMA          shift and go to state 108
+
+
+state 83
+
+    (88) mas_F -> Expresion mas2_F .
+
+    P_DERECHO       reduce using rule 88 (mas_F -> Expresion mas2_F .)
+
+
+state 84
+
+    (90) mas2_F -> COMA . mas_F
+    (88) mas_F -> . Expresion mas2_F
+    (89) mas_F -> . epsilon
+    (44) Expresion -> . EXP mas_E
+    (94) epsilon -> .
+    (50) EXP -> . Termino pn4e mas_EXP
+    (58) Termino -> . Factor pn5e mas_Term
+    (64) Factor -> . P_IZQUIERDO pn6e Expresion pn7e P_DERECHO
+    (65) Factor -> . dec_Factor mas_Factor
+    (66) dec_Factor -> . SUMA
+    (67) dec_Factor -> . RESTA
+    (68) dec_Factor -> . epsilon
+
+    P_DERECHO       reduce using rule 94 (epsilon -> .)
+    ID              reduce using rule 94 (epsilon -> .)
+    CTE_FLOAT       reduce using rule 94 (epsilon -> .)
+    CTE_INT         reduce using rule 94 (epsilon -> .)
+    P_IZQUIERDO     shift and go to state 59
+    SUMA            shift and go to state 67
+    RESTA           shift and go to state 68
+
+    mas_F                          shift and go to state 109
+    Expresion                      shift and go to state 61
+    epsilon                        shift and go to state 62
+    EXP                            shift and go to state 63
+    Termino                        shift and go to state 64
+    Factor                         shift and go to state 65
+    dec_Factor                     shift and go to state 66
+
+state 85
+
+    (91) mas2_F -> epsilon .
+
+    P_DERECHO       reduce using rule 91 (mas2_F -> epsilon .)
+
+
+state 86
+
+    (44) Expresion -> EXP mas_E .
+
+    COMA            reduce using rule 44 (Expresion -> EXP mas_E .)
+    P_DERECHO       reduce using rule 44 (Expresion -> EXP mas_E .)
+    P_COMA          reduce using rule 44 (Expresion -> EXP mas_E .)
+
+
+state 87
+
+    (45) mas_E -> operators . pn8e EXP pn9e
+    (56) pn8e -> .
+
+    P_IZQUIERDO     reduce using rule 56 (pn8e -> .)
+    SUMA            reduce using rule 56 (pn8e -> .)
+    RESTA           reduce using rule 56 (pn8e -> .)
+    ID              reduce using rule 56 (pn8e -> .)
+    CTE_FLOAT       reduce using rule 56 (pn8e -> .)
+    CTE_INT         reduce using rule 56 (pn8e -> .)
+
+    pn8e                           shift and go to state 110
+
+state 88
+
+    (46) mas_E -> epsilon .
+
+    COMA            reduce using rule 46 (mas_E -> epsilon .)
+    P_DERECHO       reduce using rule 46 (mas_E -> epsilon .)
+    P_COMA          reduce using rule 46 (mas_E -> epsilon .)
+
+
+state 89
+
+    (47) operators -> MAYOR .
+
+    P_IZQUIERDO     reduce using rule 47 (operators -> MAYOR .)
+    SUMA            reduce using rule 47 (operators -> MAYOR .)
+    RESTA           reduce using rule 47 (operators -> MAYOR .)
+    ID              reduce using rule 47 (operators -> MAYOR .)
+    CTE_FLOAT       reduce using rule 47 (operators -> MAYOR .)
+    CTE_INT         reduce using rule 47 (operators -> MAYOR .)
+
+
+state 90
+
+    (48) operators -> MENOR .
+
+    P_IZQUIERDO     reduce using rule 48 (operators -> MENOR .)
+    SUMA            reduce using rule 48 (operators -> MENOR .)
+    RESTA           reduce using rule 48 (operators -> MENOR .)
+    ID              reduce using rule 48 (operators -> MENOR .)
+    CTE_FLOAT       reduce using rule 48 (operators -> MENOR .)
+    CTE_INT         reduce using rule 48 (operators -> MENOR .)
+
+
+state 91
+
+    (49) operators -> DIFE .
+
+    P_IZQUIERDO     reduce using rule 49 (operators -> DIFE .)
+    SUMA            reduce using rule 49 (operators -> DIFE .)
+    RESTA           reduce using rule 49 (operators -> DIFE .)
+    ID              reduce using rule 49 (operators -> DIFE .)
+    CTE_FLOAT       reduce using rule 49 (operators -> DIFE .)
+    CTE_INT         reduce using rule 49 (operators -> DIFE .)
+
+
+state 92
+
+    (50) EXP -> Termino pn4e . mas_EXP
+    (51) mas_EXP -> . SUMA pn3e EXP
+    (52) mas_EXP -> . RESTA pn3e EXP
+    (53) mas_EXP -> . epsilon
+    (94) epsilon -> .
+
+    SUMA            shift and go to state 112
+    RESTA           shift and go to state 113
+    MAYOR           reduce using rule 94 (epsilon -> .)
+    MENOR           reduce using rule 94 (epsilon -> .)
+    DIFE            reduce using rule 94 (epsilon -> .)
+    COMA            reduce using rule 94 (epsilon -> .)
+    P_DERECHO       reduce using rule 94 (epsilon -> .)
+    P_COMA          reduce using rule 94 (epsilon -> .)
+
+    mas_EXP                        shift and go to state 111
+    epsilon                        shift and go to state 114
+
+state 93
+
+    (58) Termino -> Factor pn5e . mas_Term
+    (59) mas_Term -> . MULT pn2e Termino
+    (60) mas_Term -> . DIV pn2e Termino
+    (61) mas_Term -> . epsilon
+    (94) epsilon -> .
+
+    MULT            shift and go to state 116
+    DIV             shift and go to state 117
+    SUMA            reduce using rule 94 (epsilon -> .)
+    RESTA           reduce using rule 94 (epsilon -> .)
+    MAYOR           reduce using rule 94 (epsilon -> .)
+    MENOR           reduce using rule 94 (epsilon -> .)
+    DIFE            reduce using rule 94 (epsilon -> .)
+    COMA            reduce using rule 94 (epsilon -> .)
+    P_DERECHO       reduce using rule 94 (epsilon -> .)
+    P_COMA          reduce using rule 94 (epsilon -> .)
+
+    mas_Term                       shift and go to state 115
+    epsilon                        shift and go to state 118
+
+state 94
+
+    (65) Factor -> dec_Factor mas_Factor .
+
+    MULT            reduce using rule 65 (Factor -> dec_Factor mas_Factor .)
+    DIV             reduce using rule 65 (Factor -> dec_Factor mas_Factor .)
+    SUMA            reduce using rule 65 (Factor -> dec_Factor mas_Factor .)
+    RESTA           reduce using rule 65 (Factor -> dec_Factor mas_Factor .)
+    MAYOR           reduce using rule 65 (Factor -> dec_Factor mas_Factor .)
+    MENOR           reduce using rule 65 (Factor -> dec_Factor mas_Factor .)
+    DIFE            reduce using rule 65 (Factor -> dec_Factor mas_Factor .)
+    COMA            reduce using rule 65 (Factor -> dec_Factor mas_Factor .)
+    P_DERECHO       reduce using rule 65 (Factor -> dec_Factor mas_Factor .)
+    P_COMA          reduce using rule 65 (Factor -> dec_Factor mas_Factor .)
+
+
+state 95
+
+    (69) mas_Factor -> ID . pn1e
+    (71) pn1e -> .
+
+    MULT            reduce using rule 71 (pn1e -> .)
+    DIV             reduce using rule 71 (pn1e -> .)
+    SUMA            reduce using rule 71 (pn1e -> .)
+    RESTA           reduce using rule 71 (pn1e -> .)
+    MAYOR           reduce using rule 71 (pn1e -> .)
+    MENOR           reduce using rule 71 (pn1e -> .)
+    DIFE            reduce using rule 71 (pn1e -> .)
+    COMA            reduce using rule 71 (pn1e -> .)
+    P_DERECHO       reduce using rule 71 (pn1e -> .)
+    P_COMA          reduce using rule 71 (pn1e -> .)
+
+    pn1e                           shift and go to state 119
+
+state 96
+
+    (70) mas_Factor -> CTE . pn1e2
+    (72) pn1e2 -> .
+
+    MULT            reduce using rule 72 (pn1e2 -> .)
+    DIV             reduce using rule 72 (pn1e2 -> .)
+    SUMA            reduce using rule 72 (pn1e2 -> .)
+    RESTA           reduce using rule 72 (pn1e2 -> .)
+    MAYOR           reduce using rule 72 (pn1e2 -> .)
+    MENOR           reduce using rule 72 (pn1e2 -> .)
+    DIFE            reduce using rule 72 (pn1e2 -> .)
+    COMA            reduce using rule 72 (pn1e2 -> .)
+    P_DERECHO       reduce using rule 72 (pn1e2 -> .)
+    P_COMA          reduce using rule 72 (pn1e2 -> .)
+
+    pn1e2                          shift and go to state 120
+
+state 97
+
+    (75) CTE -> CTE_FLOAT . pnAux
+    (77) pnAux -> .
+
+    MULT            reduce using rule 77 (pnAux -> .)
+    DIV             reduce using rule 77 (pnAux -> .)
+    SUMA            reduce using rule 77 (pnAux -> .)
+    RESTA           reduce using rule 77 (pnAux -> .)
+    MAYOR           reduce using rule 77 (pnAux -> .)
+    MENOR           reduce using rule 77 (pnAux -> .)
+    DIFE            reduce using rule 77 (pnAux -> .)
+    COMA            reduce using rule 77 (pnAux -> .)
+    P_DERECHO       reduce using rule 77 (pnAux -> .)
+    P_COMA          reduce using rule 77 (pnAux -> .)
+
+    pnAux                          shift and go to state 121
+
+state 98
+
+    (76) CTE -> CTE_INT . pnAux2
+    (78) pnAux2 -> .
+
+    MULT            reduce using rule 78 (pnAux2 -> .)
+    DIV             reduce using rule 78 (pnAux2 -> .)
+    SUMA            reduce using rule 78 (pnAux2 -> .)
+    RESTA           reduce using rule 78 (pnAux2 -> .)
+    MAYOR           reduce using rule 78 (pnAux2 -> .)
+    MENOR           reduce using rule 78 (pnAux2 -> .)
+    DIFE            reduce using rule 78 (pnAux2 -> .)
+    COMA            reduce using rule 78 (pnAux2 -> .)
+    P_DERECHO       reduce using rule 78 (pnAux2 -> .)
+    P_COMA          reduce using rule 78 (pnAux2 -> .)
+
+    pnAux2                         shift and go to state 122
+
+state 99
+
+    (34) Condition -> IF P_IZQUIERDO Expresion pn1i . P_DERECHO Body mas_if P_COMA pn2i
+
+    P_DERECHO       shift and go to state 123
+
+
+state 100
+
+    (31) Cycle -> DO pn1c Body WHILE . P_IZQUIERDO Expresion pn2c P_DERECHO P_COMA
+
+    P_IZQUIERDO     shift and go to state 124
+
+
+state 101
+
+    (24) Print -> PRINT P_IZQUIERDO dec_Expresion P_DERECHO . P_COMA
+
+    P_COMA          shift and go to state 125
+
+
+state 102
+
+    (25) dec_Expresion -> Expresion pn2p . mas_Print
+    (27) mas_Print -> . COMA dec_Expresion
+    (28) mas_Print -> . epsilon
+    (94) epsilon -> .
+
+    COMA            shift and go to state 127
+    P_DERECHO       reduce using rule 94 (epsilon -> .)
+
+    mas_Print                      shift and go to state 126
+    epsilon                        shift and go to state 128
+
+state 103
+
+    (26) dec_Expresion -> CTE_STRING pn1p . mas_Print
+    (27) mas_Print -> . COMA dec_Expresion
+    (28) mas_Print -> . epsilon
+    (94) epsilon -> .
+
+    COMA            shift and go to state 127
+    P_DERECHO       reduce using rule 94 (epsilon -> .)
+
+    mas_Print                      shift and go to state 129
+    epsilon                        shift and go to state 128
+
+state 104
+
+    (80) mas_Func -> ID P_PUNTO Type . pn5 mas2_Func
+    (85) pn5 -> .
+
+    COMA            reduce using rule 85 (pn5 -> .)
+    P_DERECHO       reduce using rule 85 (pn5 -> .)
+
+    pn5                            shift and go to state 130
+
+state 105
+
+    (79) Funcs -> VOID ID pn4 P_IZQUIERDO mas_Func P_DERECHO B_IZQUIERDO . dec_Vars Body pn6 B_DERECHO P_COMA
+    (2) dec_Vars -> . Vars
+    (3) dec_Vars -> . epsilon
+    (7) Vars -> . VARIABLE mas_Vars
+    (94) epsilon -> .
+
+    VARIABLE        shift and go to state 9
+    K_IZQUIERDO     reduce using rule 94 (epsilon -> .)
+
+    dec_Vars                       shift and go to state 131
+    Vars                           shift and go to state 7
+    epsilon                        shift and go to state 8
+
+state 106
+
+    (40) Assign -> ID pn1a IGUAL pn2a Expresion . pn3a P_COMA
+    (43) pn3a -> .
+
+    P_COMA          reduce using rule 43 (pn3a -> .)
+
+    pn3a                           shift and go to state 132
+
+state 107
+
+    (64) Factor -> P_IZQUIERDO pn6e Expresion . pn7e P_DERECHO
+    (74) pn7e -> .
+
+    P_DERECHO       reduce using rule 74 (pn7e -> .)
+
+    pn7e                           shift and go to state 133
+
+state 108
+
+    (87) F_Call -> ID P_IZQUIERDO mas_F P_DERECHO P_COMA .
+
+    ID              reduce using rule 87 (F_Call -> ID P_IZQUIERDO mas_F P_DERECHO P_COMA .)
+    IF              reduce using rule 87 (F_Call -> ID P_IZQUIERDO mas_F P_DERECHO P_COMA .)
+    DO              reduce using rule 87 (F_Call -> ID P_IZQUIERDO mas_F P_DERECHO P_COMA .)
+    PRINT           reduce using rule 87 (F_Call -> ID P_IZQUIERDO mas_F P_DERECHO P_COMA .)
+    K_DERECHO       reduce using rule 87 (F_Call -> ID P_IZQUIERDO mas_F P_DERECHO P_COMA .)
+
+
+state 109
+
+    (90) mas2_F -> COMA mas_F .
+
+    P_DERECHO       reduce using rule 90 (mas2_F -> COMA mas_F .)
+
+
+state 110
+
+    (45) mas_E -> operators pn8e . EXP pn9e
+    (50) EXP -> . Termino pn4e mas_EXP
+    (58) Termino -> . Factor pn5e mas_Term
+    (64) Factor -> . P_IZQUIERDO pn6e Expresion pn7e P_DERECHO
+    (65) Factor -> . dec_Factor mas_Factor
+    (66) dec_Factor -> . SUMA
+    (67) dec_Factor -> . RESTA
+    (68) dec_Factor -> . epsilon
+    (94) epsilon -> .
+
+    P_IZQUIERDO     shift and go to state 59
+    SUMA            shift and go to state 67
+    RESTA           shift and go to state 68
+    ID              reduce using rule 94 (epsilon -> .)
+    CTE_FLOAT       reduce using rule 94 (epsilon -> .)
+    CTE_INT         reduce using rule 94 (epsilon -> .)
+
+    EXP                            shift and go to state 134
+    Termino                        shift and go to state 64
+    Factor                         shift and go to state 65
+    dec_Factor                     shift and go to state 66
+    epsilon                        shift and go to state 70
+
+state 111
+
+    (50) EXP -> Termino pn4e mas_EXP .
+
+    MAYOR           reduce using rule 50 (EXP -> Termino pn4e mas_EXP .)
+    MENOR           reduce using rule 50 (EXP -> Termino pn4e mas_EXP .)
+    DIFE            reduce using rule 50 (EXP -> Termino pn4e mas_EXP .)
+    COMA            reduce using rule 50 (EXP -> Termino pn4e mas_EXP .)
+    P_DERECHO       reduce using rule 50 (EXP -> Termino pn4e mas_EXP .)
+    P_COMA          reduce using rule 50 (EXP -> Termino pn4e mas_EXP .)
+
+
+state 112
+
+    (51) mas_EXP -> SUMA . pn3e EXP
+    (54) pn3e -> .
+
+    P_IZQUIERDO     reduce using rule 54 (pn3e -> .)
+    SUMA            reduce using rule 54 (pn3e -> .)
+    RESTA           reduce using rule 54 (pn3e -> .)
+    ID              reduce using rule 54 (pn3e -> .)
+    CTE_FLOAT       reduce using rule 54 (pn3e -> .)
+    CTE_INT         reduce using rule 54 (pn3e -> .)
+
+    pn3e                           shift and go to state 135
+
+state 113
+
+    (52) mas_EXP -> RESTA . pn3e EXP
+    (54) pn3e -> .
+
+    P_IZQUIERDO     reduce using rule 54 (pn3e -> .)
+    SUMA            reduce using rule 54 (pn3e -> .)
+    RESTA           reduce using rule 54 (pn3e -> .)
+    ID              reduce using rule 54 (pn3e -> .)
+    CTE_FLOAT       reduce using rule 54 (pn3e -> .)
+    CTE_INT         reduce using rule 54 (pn3e -> .)
+
+    pn3e                           shift and go to state 136
+
+state 114
+
+    (53) mas_EXP -> epsilon .
+
+    MAYOR           reduce using rule 53 (mas_EXP -> epsilon .)
+    MENOR           reduce using rule 53 (mas_EXP -> epsilon .)
+    DIFE            reduce using rule 53 (mas_EXP -> epsilon .)
+    COMA            reduce using rule 53 (mas_EXP -> epsilon .)
+    P_DERECHO       reduce using rule 53 (mas_EXP -> epsilon .)
+    P_COMA          reduce using rule 53 (mas_EXP -> epsilon .)
+
+
+state 115
+
+    (58) Termino -> Factor pn5e mas_Term .
+
+    SUMA            reduce using rule 58 (Termino -> Factor pn5e mas_Term .)
+    RESTA           reduce using rule 58 (Termino -> Factor pn5e mas_Term .)
+    MAYOR           reduce using rule 58 (Termino -> Factor pn5e mas_Term .)
+    MENOR           reduce using rule 58 (Termino -> Factor pn5e mas_Term .)
+    DIFE            reduce using rule 58 (Termino -> Factor pn5e mas_Term .)
+    COMA            reduce using rule 58 (Termino -> Factor pn5e mas_Term .)
+    P_DERECHO       reduce using rule 58 (Termino -> Factor pn5e mas_Term .)
+    P_COMA          reduce using rule 58 (Termino -> Factor pn5e mas_Term .)
+
+
+state 116
+
+    (59) mas_Term -> MULT . pn2e Termino
+    (62) pn2e -> .
+
+    P_IZQUIERDO     reduce using rule 62 (pn2e -> .)
+    SUMA            reduce using rule 62 (pn2e -> .)
+    RESTA           reduce using rule 62 (pn2e -> .)
+    ID              reduce using rule 62 (pn2e -> .)
+    CTE_FLOAT       reduce using rule 62 (pn2e -> .)
+    CTE_INT         reduce using rule 62 (pn2e -> .)
+
+    pn2e                           shift and go to state 137
+
+state 117
+
+    (60) mas_Term -> DIV . pn2e Termino
+    (62) pn2e -> .
+
+    P_IZQUIERDO     reduce using rule 62 (pn2e -> .)
+    SUMA            reduce using rule 62 (pn2e -> .)
+    RESTA           reduce using rule 62 (pn2e -> .)
+    ID              reduce using rule 62 (pn2e -> .)
+    CTE_FLOAT       reduce using rule 62 (pn2e -> .)
+    CTE_INT         reduce using rule 62 (pn2e -> .)
+
+    pn2e                           shift and go to state 138
+
+state 118
+
+    (61) mas_Term -> epsilon .
+
+    SUMA            reduce using rule 61 (mas_Term -> epsilon .)
+    RESTA           reduce using rule 61 (mas_Term -> epsilon .)
+    MAYOR           reduce using rule 61 (mas_Term -> epsilon .)
+    MENOR           reduce using rule 61 (mas_Term -> epsilon .)
+    DIFE            reduce using rule 61 (mas_Term -> epsilon .)
+    COMA            reduce using rule 61 (mas_Term -> epsilon .)
+    P_DERECHO       reduce using rule 61 (mas_Term -> epsilon .)
+    P_COMA          reduce using rule 61 (mas_Term -> epsilon .)
+
+
+state 119
+
+    (69) mas_Factor -> ID pn1e .
+
+    MULT            reduce using rule 69 (mas_Factor -> ID pn1e .)
+    DIV             reduce using rule 69 (mas_Factor -> ID pn1e .)
+    SUMA            reduce using rule 69 (mas_Factor -> ID pn1e .)
+    RESTA           reduce using rule 69 (mas_Factor -> ID pn1e .)
+    MAYOR           reduce using rule 69 (mas_Factor -> ID pn1e .)
+    MENOR           reduce using rule 69 (mas_Factor -> ID pn1e .)
+    DIFE            reduce using rule 69 (mas_Factor -> ID pn1e .)
+    COMA            reduce using rule 69 (mas_Factor -> ID pn1e .)
+    P_DERECHO       reduce using rule 69 (mas_Factor -> ID pn1e .)
+    P_COMA          reduce using rule 69 (mas_Factor -> ID pn1e .)
+
+
+state 120
+
+    (70) mas_Factor -> CTE pn1e2 .
+
+    MULT            reduce using rule 70 (mas_Factor -> CTE pn1e2 .)
+    DIV             reduce using rule 70 (mas_Factor -> CTE pn1e2 .)
+    SUMA            reduce using rule 70 (mas_Factor -> CTE pn1e2 .)
+    RESTA           reduce using rule 70 (mas_Factor -> CTE pn1e2 .)
+    MAYOR           reduce using rule 70 (mas_Factor -> CTE pn1e2 .)
+    MENOR           reduce using rule 70 (mas_Factor -> CTE pn1e2 .)
+    DIFE            reduce using rule 70 (mas_Factor -> CTE pn1e2 .)
+    COMA            reduce using rule 70 (mas_Factor -> CTE pn1e2 .)
+    P_DERECHO       reduce using rule 70 (mas_Factor -> CTE pn1e2 .)
+    P_COMA          reduce using rule 70 (mas_Factor -> CTE pn1e2 .)
+
+
+state 121
+
+    (75) CTE -> CTE_FLOAT pnAux .
+
+    MULT            reduce using rule 75 (CTE -> CTE_FLOAT pnAux .)
+    DIV             reduce using rule 75 (CTE -> CTE_FLOAT pnAux .)
+    SUMA            reduce using rule 75 (CTE -> CTE_FLOAT pnAux .)
+    RESTA           reduce using rule 75 (CTE -> CTE_FLOAT pnAux .)
+    MAYOR           reduce using rule 75 (CTE -> CTE_FLOAT pnAux .)
+    MENOR           reduce using rule 75 (CTE -> CTE_FLOAT pnAux .)
+    DIFE            reduce using rule 75 (CTE -> CTE_FLOAT pnAux .)
+    COMA            reduce using rule 75 (CTE -> CTE_FLOAT pnAux .)
+    P_DERECHO       reduce using rule 75 (CTE -> CTE_FLOAT pnAux .)
+    P_COMA          reduce using rule 75 (CTE -> CTE_FLOAT pnAux .)
+
+
+state 122
+
+    (76) CTE -> CTE_INT pnAux2 .
+
+    MULT            reduce using rule 76 (CTE -> CTE_INT pnAux2 .)
+    DIV             reduce using rule 76 (CTE -> CTE_INT pnAux2 .)
+    SUMA            reduce using rule 76 (CTE -> CTE_INT pnAux2 .)
+    RESTA           reduce using rule 76 (CTE -> CTE_INT pnAux2 .)
+    MAYOR           reduce using rule 76 (CTE -> CTE_INT pnAux2 .)
+    MENOR           reduce using rule 76 (CTE -> CTE_INT pnAux2 .)
+    DIFE            reduce using rule 76 (CTE -> CTE_INT pnAux2 .)
+    COMA            reduce using rule 76 (CTE -> CTE_INT pnAux2 .)
+    P_DERECHO       reduce using rule 76 (CTE -> CTE_INT pnAux2 .)
+    P_COMA          reduce using rule 76 (CTE -> CTE_INT pnAux2 .)
+
+
+state 123
+
+    (34) Condition -> IF P_IZQUIERDO Expresion pn1i P_DERECHO . Body mas_if P_COMA pn2i
+    (16) Body -> . K_IZQUIERDO dec_State K_DERECHO
+
+    K_IZQUIERDO     shift and go to state 23
+
+    Body                           shift and go to state 139
+
+state 124
+
+    (31) Cycle -> DO pn1c Body WHILE P_IZQUIERDO . Expresion pn2c P_DERECHO P_COMA
+    (44) Expresion -> . EXP mas_E
+    (50) EXP -> . Termino pn4e mas_EXP
+    (58) Termino -> . Factor pn5e mas_Term
+    (64) Factor -> . P_IZQUIERDO pn6e Expresion pn7e P_DERECHO
+    (65) Factor -> . dec_Factor mas_Factor
+    (66) dec_Factor -> . SUMA
+    (67) dec_Factor -> . RESTA
+    (68) dec_Factor -> . epsilon
+    (94) epsilon -> .
+
+    P_IZQUIERDO     shift and go to state 59
+    SUMA            shift and go to state 67
+    RESTA           shift and go to state 68
+    ID              reduce using rule 94 (epsilon -> .)
+    CTE_FLOAT       reduce using rule 94 (epsilon -> .)
+    CTE_INT         reduce using rule 94 (epsilon -> .)
+
+    Expresion                      shift and go to state 140
+    EXP                            shift and go to state 63
+    Termino                        shift and go to state 64
+    Factor                         shift and go to state 65
+    dec_Factor                     shift and go to state 66
+    epsilon                        shift and go to state 70
+
+state 125
+
+    (24) Print -> PRINT P_IZQUIERDO dec_Expresion P_DERECHO P_COMA .
+
+    ID              reduce using rule 24 (Print -> PRINT P_IZQUIERDO dec_Expresion P_DERECHO P_COMA .)
+    IF              reduce using rule 24 (Print -> PRINT P_IZQUIERDO dec_Expresion P_DERECHO P_COMA .)
+    DO              reduce using rule 24 (Print -> PRINT P_IZQUIERDO dec_Expresion P_DERECHO P_COMA .)
+    PRINT           reduce using rule 24 (Print -> PRINT P_IZQUIERDO dec_Expresion P_DERECHO P_COMA .)
+    K_DERECHO       reduce using rule 24 (Print -> PRINT P_IZQUIERDO dec_Expresion P_DERECHO P_COMA .)
+
+
+state 126
+
+    (25) dec_Expresion -> Expresion pn2p mas_Print .
+
+    P_DERECHO       reduce using rule 25 (dec_Expresion -> Expresion pn2p mas_Print .)
+
+
+state 127
+
+    (27) mas_Print -> COMA . dec_Expresion
+    (25) dec_Expresion -> . Expresion pn2p mas_Print
+    (26) dec_Expresion -> . CTE_STRING pn1p mas_Print
+    (44) Expresion -> . EXP mas_E
+    (50) EXP -> . Termino pn4e mas_EXP
+    (58) Termino -> . Factor pn5e mas_Term
+    (64) Factor -> . P_IZQUIERDO pn6e Expresion pn7e P_DERECHO
+    (65) Factor -> . dec_Factor mas_Factor
+    (66) dec_Factor -> . SUMA
+    (67) dec_Factor -> . RESTA
+    (68) dec_Factor -> . epsilon
+    (94) epsilon -> .
+
+    CTE_STRING      shift and go to state 74
+    P_IZQUIERDO     shift and go to state 59
+    SUMA            shift and go to state 67
+    RESTA           shift and go to state 68
+    ID              reduce using rule 94 (epsilon -> .)
+    CTE_FLOAT       reduce using rule 94 (epsilon -> .)
+    CTE_INT         reduce using rule 94 (epsilon -> .)
+
+    dec_Expresion                  shift and go to state 141
+    Expresion                      shift and go to state 73
+    EXP                            shift and go to state 63
+    Termino                        shift and go to state 64
+    Factor                         shift and go to state 65
+    dec_Factor                     shift and go to state 66
+    epsilon                        shift and go to state 70
+
+state 128
+
+    (28) mas_Print -> epsilon .
+
+    P_DERECHO       reduce using rule 28 (mas_Print -> epsilon .)
+
+
+state 129
+
+    (26) dec_Expresion -> CTE_STRING pn1p mas_Print .
+
+    P_DERECHO       reduce using rule 26 (dec_Expresion -> CTE_STRING pn1p mas_Print .)
+
+
+state 130
+
+    (80) mas_Func -> ID P_PUNTO Type pn5 . mas2_Func
+    (82) mas2_Func -> . COMA mas_Func
+    (83) mas2_Func -> . epsilon
+    (94) epsilon -> .
+
+    COMA            shift and go to state 143
+    P_DERECHO       reduce using rule 94 (epsilon -> .)
+
+    mas2_Func                      shift and go to state 142
+    epsilon                        shift and go to state 144
+
+state 131
+
+    (79) Funcs -> VOID ID pn4 P_IZQUIERDO mas_Func P_DERECHO B_IZQUIERDO dec_Vars . Body pn6 B_DERECHO P_COMA
+    (16) Body -> . K_IZQUIERDO dec_State K_DERECHO
+
+    K_IZQUIERDO     shift and go to state 23
+
+    Body                           shift and go to state 145
+
+state 132
+
+    (40) Assign -> ID pn1a IGUAL pn2a Expresion pn3a . P_COMA
+
+    P_COMA          shift and go to state 146
+
+
+state 133
+
+    (64) Factor -> P_IZQUIERDO pn6e Expresion pn7e . P_DERECHO
+
+    P_DERECHO       shift and go to state 147
+
+
+state 134
+
+    (45) mas_E -> operators pn8e EXP . pn9e
+    (57) pn9e -> .
+
+    COMA            reduce using rule 57 (pn9e -> .)
+    P_DERECHO       reduce using rule 57 (pn9e -> .)
+    P_COMA          reduce using rule 57 (pn9e -> .)
+
+    pn9e                           shift and go to state 148
+
+state 135
+
+    (51) mas_EXP -> SUMA pn3e . EXP
+    (50) EXP -> . Termino pn4e mas_EXP
+    (58) Termino -> . Factor pn5e mas_Term
+    (64) Factor -> . P_IZQUIERDO pn6e Expresion pn7e P_DERECHO
+    (65) Factor -> . dec_Factor mas_Factor
+    (66) dec_Factor -> . SUMA
+    (67) dec_Factor -> . RESTA
+    (68) dec_Factor -> . epsilon
+    (94) epsilon -> .
+
+    P_IZQUIERDO     shift and go to state 59
+    SUMA            shift and go to state 67
+    RESTA           shift and go to state 68
+    ID              reduce using rule 94 (epsilon -> .)
+    CTE_FLOAT       reduce using rule 94 (epsilon -> .)
+    CTE_INT         reduce using rule 94 (epsilon -> .)
+
+    EXP                            shift and go to state 149
+    Termino                        shift and go to state 64
+    Factor                         shift and go to state 65
+    dec_Factor                     shift and go to state 66
+    epsilon                        shift and go to state 70
+
+state 136
+
+    (52) mas_EXP -> RESTA pn3e . EXP
+    (50) EXP -> . Termino pn4e mas_EXP
+    (58) Termino -> . Factor pn5e mas_Term
+    (64) Factor -> . P_IZQUIERDO pn6e Expresion pn7e P_DERECHO
+    (65) Factor -> . dec_Factor mas_Factor
+    (66) dec_Factor -> . SUMA
+    (67) dec_Factor -> . RESTA
+    (68) dec_Factor -> . epsilon
+    (94) epsilon -> .
+
+    P_IZQUIERDO     shift and go to state 59
+    SUMA            shift and go to state 67
+    RESTA           shift and go to state 68
+    ID              reduce using rule 94 (epsilon -> .)
+    CTE_FLOAT       reduce using rule 94 (epsilon -> .)
+    CTE_INT         reduce using rule 94 (epsilon -> .)
+
+    EXP                            shift and go to state 150
+    Termino                        shift and go to state 64
+    Factor                         shift and go to state 65
+    dec_Factor                     shift and go to state 66
+    epsilon                        shift and go to state 70
+
+state 137
+
+    (59) mas_Term -> MULT pn2e . Termino
+    (58) Termino -> . Factor pn5e mas_Term
+    (64) Factor -> . P_IZQUIERDO pn6e Expresion pn7e P_DERECHO
+    (65) Factor -> . dec_Factor mas_Factor
+    (66) dec_Factor -> . SUMA
+    (67) dec_Factor -> . RESTA
+    (68) dec_Factor -> . epsilon
+    (94) epsilon -> .
+
+    P_IZQUIERDO     shift and go to state 59
+    SUMA            shift and go to state 67
+    RESTA           shift and go to state 68
+    ID              reduce using rule 94 (epsilon -> .)
+    CTE_FLOAT       reduce using rule 94 (epsilon -> .)
+    CTE_INT         reduce using rule 94 (epsilon -> .)
+
+    Termino                        shift and go to state 151
+    Factor                         shift and go to state 65
+    dec_Factor                     shift and go to state 66
+    epsilon                        shift and go to state 70
+
+state 138
+
+    (60) mas_Term -> DIV pn2e . Termino
+    (58) Termino -> . Factor pn5e mas_Term
+    (64) Factor -> . P_IZQUIERDO pn6e Expresion pn7e P_DERECHO
+    (65) Factor -> . dec_Factor mas_Factor
+    (66) dec_Factor -> . SUMA
+    (67) dec_Factor -> . RESTA
+    (68) dec_Factor -> . epsilon
+    (94) epsilon -> .
+
+    P_IZQUIERDO     shift and go to state 59
+    SUMA            shift and go to state 67
+    RESTA           shift and go to state 68
+    ID              reduce using rule 94 (epsilon -> .)
+    CTE_FLOAT       reduce using rule 94 (epsilon -> .)
+    CTE_INT         reduce using rule 94 (epsilon -> .)
+
+    Termino                        shift and go to state 152
+    Factor                         shift and go to state 65
+    dec_Factor                     shift and go to state 66
+    epsilon                        shift and go to state 70
+
+state 139
+
+    (34) Condition -> IF P_IZQUIERDO Expresion pn1i P_DERECHO Body . mas_if P_COMA pn2i
+    (35) mas_if -> . ELSE pn3i Body
+    (36) mas_if -> . epsilon
+    (94) epsilon -> .
+
+    ELSE            shift and go to state 154
+    P_COMA          reduce using rule 94 (epsilon -> .)
+
+    mas_if                         shift and go to state 153
+    epsilon                        shift and go to state 155
+
+state 140
+
+    (31) Cycle -> DO pn1c Body WHILE P_IZQUIERDO Expresion . pn2c P_DERECHO P_COMA
+    (33) pn2c -> .
+
+    P_DERECHO       reduce using rule 33 (pn2c -> .)
+
+    pn2c                           shift and go to state 156
+
+state 141
+
+    (27) mas_Print -> COMA dec_Expresion .
+
+    P_DERECHO       reduce using rule 27 (mas_Print -> COMA dec_Expresion .)
+
+
+state 142
+
+    (80) mas_Func -> ID P_PUNTO Type pn5 mas2_Func .
+
+    P_DERECHO       reduce using rule 80 (mas_Func -> ID P_PUNTO Type pn5 mas2_Func .)
+
+
+state 143
+
+    (82) mas2_Func -> COMA . mas_Func
+    (80) mas_Func -> . ID P_PUNTO Type pn5 mas2_Func
+    (81) mas_Func -> . epsilon
+    (94) epsilon -> .
+
+    ID              shift and go to state 54
+    P_DERECHO       reduce using rule 94 (epsilon -> .)
+
+    mas_Func                       shift and go to state 157
+    epsilon                        shift and go to state 56
+
+state 144
+
+    (83) mas2_Func -> epsilon .
+
+    P_DERECHO       reduce using rule 83 (mas2_Func -> epsilon .)
+
+
+state 145
+
+    (79) Funcs -> VOID ID pn4 P_IZQUIERDO mas_Func P_DERECHO B_IZQUIERDO dec_Vars Body . pn6 B_DERECHO P_COMA
+    (86) pn6 -> .
+
+    B_DERECHO       reduce using rule 86 (pn6 -> .)
+
+    pn6                            shift and go to state 158
+
+state 146
+
+    (40) Assign -> ID pn1a IGUAL pn2a Expresion pn3a P_COMA .
+
+    ID              reduce using rule 40 (Assign -> ID pn1a IGUAL pn2a Expresion pn3a P_COMA .)
+    IF              reduce using rule 40 (Assign -> ID pn1a IGUAL pn2a Expresion pn3a P_COMA .)
+    DO              reduce using rule 40 (Assign -> ID pn1a IGUAL pn2a Expresion pn3a P_COMA .)
+    PRINT           reduce using rule 40 (Assign -> ID pn1a IGUAL pn2a Expresion pn3a P_COMA .)
+    K_DERECHO       reduce using rule 40 (Assign -> ID pn1a IGUAL pn2a Expresion pn3a P_COMA .)
+
+
+state 147
+
+    (64) Factor -> P_IZQUIERDO pn6e Expresion pn7e P_DERECHO .
+
+    MULT            reduce using rule 64 (Factor -> P_IZQUIERDO pn6e Expresion pn7e P_DERECHO .)
+    DIV             reduce using rule 64 (Factor -> P_IZQUIERDO pn6e Expresion pn7e P_DERECHO .)
+    SUMA            reduce using rule 64 (Factor -> P_IZQUIERDO pn6e Expresion pn7e P_DERECHO .)
+    RESTA           reduce using rule 64 (Factor -> P_IZQUIERDO pn6e Expresion pn7e P_DERECHO .)
+    MAYOR           reduce using rule 64 (Factor -> P_IZQUIERDO pn6e Expresion pn7e P_DERECHO .)
+    MENOR           reduce using rule 64 (Factor -> P_IZQUIERDO pn6e Expresion pn7e P_DERECHO .)
+    DIFE            reduce using rule 64 (Factor -> P_IZQUIERDO pn6e Expresion pn7e P_DERECHO .)
+    COMA            reduce using rule 64 (Factor -> P_IZQUIERDO pn6e Expresion pn7e P_DERECHO .)
+    P_DERECHO       reduce using rule 64 (Factor -> P_IZQUIERDO pn6e Expresion pn7e P_DERECHO .)
+    P_COMA          reduce using rule 64 (Factor -> P_IZQUIERDO pn6e Expresion pn7e P_DERECHO .)
+
+
+state 148
+
+    (45) mas_E -> operators pn8e EXP pn9e .
+
+    COMA            reduce using rule 45 (mas_E -> operators pn8e EXP pn9e .)
+    P_DERECHO       reduce using rule 45 (mas_E -> operators pn8e EXP pn9e .)
+    P_COMA          reduce using rule 45 (mas_E -> operators pn8e EXP pn9e .)
+
+
+state 149
+
+    (51) mas_EXP -> SUMA pn3e EXP .
+
+    MAYOR           reduce using rule 51 (mas_EXP -> SUMA pn3e EXP .)
+    MENOR           reduce using rule 51 (mas_EXP -> SUMA pn3e EXP .)
+    DIFE            reduce using rule 51 (mas_EXP -> SUMA pn3e EXP .)
+    COMA            reduce using rule 51 (mas_EXP -> SUMA pn3e EXP .)
+    P_DERECHO       reduce using rule 51 (mas_EXP -> SUMA pn3e EXP .)
+    P_COMA          reduce using rule 51 (mas_EXP -> SUMA pn3e EXP .)
+
+
+state 150
+
+    (52) mas_EXP -> RESTA pn3e EXP .
+
+    MAYOR           reduce using rule 52 (mas_EXP -> RESTA pn3e EXP .)
+    MENOR           reduce using rule 52 (mas_EXP -> RESTA pn3e EXP .)
+    DIFE            reduce using rule 52 (mas_EXP -> RESTA pn3e EXP .)
+    COMA            reduce using rule 52 (mas_EXP -> RESTA pn3e EXP .)
+    P_DERECHO       reduce using rule 52 (mas_EXP -> RESTA pn3e EXP .)
+    P_COMA          reduce using rule 52 (mas_EXP -> RESTA pn3e EXP .)
+
+
+state 151
+
+    (59) mas_Term -> MULT pn2e Termino .
+
+    SUMA            reduce using rule 59 (mas_Term -> MULT pn2e Termino .)
+    RESTA           reduce using rule 59 (mas_Term -> MULT pn2e Termino .)
+    MAYOR           reduce using rule 59 (mas_Term -> MULT pn2e Termino .)
+    MENOR           reduce using rule 59 (mas_Term -> MULT pn2e Termino .)
+    DIFE            reduce using rule 59 (mas_Term -> MULT pn2e Termino .)
+    COMA            reduce using rule 59 (mas_Term -> MULT pn2e Termino .)
+    P_DERECHO       reduce using rule 59 (mas_Term -> MULT pn2e Termino .)
+    P_COMA          reduce using rule 59 (mas_Term -> MULT pn2e Termino .)
+
+
+state 152
+
+    (60) mas_Term -> DIV pn2e Termino .
+
+    SUMA            reduce using rule 60 (mas_Term -> DIV pn2e Termino .)
+    RESTA           reduce using rule 60 (mas_Term -> DIV pn2e Termino .)
+    MAYOR           reduce using rule 60 (mas_Term -> DIV pn2e Termino .)
+    MENOR           reduce using rule 60 (mas_Term -> DIV pn2e Termino .)
+    DIFE            reduce using rule 60 (mas_Term -> DIV pn2e Termino .)
+    COMA            reduce using rule 60 (mas_Term -> DIV pn2e Termino .)
+    P_DERECHO       reduce using rule 60 (mas_Term -> DIV pn2e Termino .)
+    P_COMA          reduce using rule 60 (mas_Term -> DIV pn2e Termino .)
+
+
+state 153
+
+    (34) Condition -> IF P_IZQUIERDO Expresion pn1i P_DERECHO Body mas_if . P_COMA pn2i
+
+    P_COMA          shift and go to state 159
+
+
+state 154
+
+    (35) mas_if -> ELSE . pn3i Body
+    (39) pn3i -> .
+
+    K_IZQUIERDO     reduce using rule 39 (pn3i -> .)
+
+    pn3i                           shift and go to state 160
+
+state 155
+
+    (36) mas_if -> epsilon .
+
+    P_COMA          reduce using rule 36 (mas_if -> epsilon .)
+
+
+state 156
+
+    (31) Cycle -> DO pn1c Body WHILE P_IZQUIERDO Expresion pn2c . P_DERECHO P_COMA
+
+    P_DERECHO       shift and go to state 161
+
+
+state 157
+
+    (82) mas2_Func -> COMA mas_Func .
+
+    P_DERECHO       reduce using rule 82 (mas2_Func -> COMA mas_Func .)
+
+
+state 158
+
+    (79) Funcs -> VOID ID pn4 P_IZQUIERDO mas_Func P_DERECHO B_IZQUIERDO dec_Vars Body pn6 . B_DERECHO P_COMA
+
+    B_DERECHO       shift and go to state 162
+
+
+state 159
+
+    (34) Condition -> IF P_IZQUIERDO Expresion pn1i P_DERECHO Body mas_if P_COMA . pn2i
+    (38) pn2i -> .
+
+    ID              reduce using rule 38 (pn2i -> .)
+    IF              reduce using rule 38 (pn2i -> .)
+    DO              reduce using rule 38 (pn2i -> .)
+    PRINT           reduce using rule 38 (pn2i -> .)
+    K_DERECHO       reduce using rule 38 (pn2i -> .)
+
+    pn2i                           shift and go to state 163
+
+state 160
+
+    (35) mas_if -> ELSE pn3i . Body
+    (16) Body -> . K_IZQUIERDO dec_State K_DERECHO
+
+    K_IZQUIERDO     shift and go to state 23
+
+    Body                           shift and go to state 164
+
+state 161
+
+    (31) Cycle -> DO pn1c Body WHILE P_IZQUIERDO Expresion pn2c P_DERECHO . P_COMA
+
+    P_COMA          shift and go to state 165
+
+
+state 162
+
+    (79) Funcs -> VOID ID pn4 P_IZQUIERDO mas_Func P_DERECHO B_IZQUIERDO dec_Vars Body pn6 B_DERECHO . P_COMA
+
+    P_COMA          shift and go to state 166
+
+
+state 163
+
+    (34) Condition -> IF P_IZQUIERDO Expresion pn1i P_DERECHO Body mas_if P_COMA pn2i .
+
+    ID              reduce using rule 34 (Condition -> IF P_IZQUIERDO Expresion pn1i P_DERECHO Body mas_if P_COMA pn2i .)
+    IF              reduce using rule 34 (Condition -> IF P_IZQUIERDO Expresion pn1i P_DERECHO Body mas_if P_COMA pn2i .)
+    DO              reduce using rule 34 (Condition -> IF P_IZQUIERDO Expresion pn1i P_DERECHO Body mas_if P_COMA pn2i .)
+    PRINT           reduce using rule 34 (Condition -> IF P_IZQUIERDO Expresion pn1i P_DERECHO Body mas_if P_COMA pn2i .)
+    K_DERECHO       reduce using rule 34 (Condition -> IF P_IZQUIERDO Expresion pn1i P_DERECHO Body mas_if P_COMA pn2i .)
+
+
+state 164
+
+    (35) mas_if -> ELSE pn3i Body .
+
+    P_COMA          reduce using rule 35 (mas_if -> ELSE pn3i Body .)
+
+
+state 165
+
+    (31) Cycle -> DO pn1c Body WHILE P_IZQUIERDO Expresion pn2c P_DERECHO P_COMA .
+
+    ID              reduce using rule 31 (Cycle -> DO pn1c Body WHILE P_IZQUIERDO Expresion pn2c P_DERECHO P_COMA .)
+    IF              reduce using rule 31 (Cycle -> DO pn1c Body WHILE P_IZQUIERDO Expresion pn2c P_DERECHO P_COMA .)
+    DO              reduce using rule 31 (Cycle -> DO pn1c Body WHILE P_IZQUIERDO Expresion pn2c P_DERECHO P_COMA .)
+    PRINT           reduce using rule 31 (Cycle -> DO pn1c Body WHILE P_IZQUIERDO Expresion pn2c P_DERECHO P_COMA .)
+    K_DERECHO       reduce using rule 31 (Cycle -> DO pn1c Body WHILE P_IZQUIERDO Expresion pn2c P_DERECHO P_COMA .)
+
+
+state 166
+
+    (79) Funcs -> VOID ID pn4 P_IZQUIERDO mas_Func P_DERECHO B_IZQUIERDO dec_Vars Body pn6 B_DERECHO P_COMA .
+
+    VOID            reduce using rule 79 (Funcs -> VOID ID pn4 P_IZQUIERDO mas_Func P_DERECHO B_IZQUIERDO dec_Vars Body pn6 B_DERECHO P_COMA .)
+    MAIN            reduce using rule 79 (Funcs -> VOID ID pn4 P_IZQUIERDO mas_Func P_DERECHO B_IZQUIERDO dec_Vars Body pn6 B_DERECHO P_COMA .)
+
